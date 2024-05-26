@@ -124,7 +124,6 @@
             MinimumSize = new Size(557, 518);
             Name = "Main";
             Text = "Comics Loader v1.0";
-            FormClosing += Main_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
