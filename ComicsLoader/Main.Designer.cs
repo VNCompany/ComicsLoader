@@ -54,7 +54,6 @@
             tbUrl.Name = "tbUrl";
             tbUrl.Size = new Size(525, 27);
             tbUrl.TabIndex = 1;
-            tbUrl.KeyDown += tbUrl_KeyDown;
             // 
             // rtbHtml
             // 
@@ -65,7 +64,6 @@
             rtbHtml.Size = new Size(525, 256);
             rtbHtml.TabIndex = 2;
             rtbHtml.Text = "";
-            rtbHtml.TextChanged += HtmlOrXPath_TextChanged;
             // 
             // label2
             // 
@@ -95,7 +93,6 @@
             cbXPath.Name = "cbXPath";
             cbXPath.Size = new Size(525, 28);
             cbXPath.TabIndex = 3;
-            cbXPath.TextUpdate += HtmlOrXPath_TextChanged;
             // 
             // btnSearch
             // 
@@ -108,7 +105,6 @@
             btnSearch.TabIndex = 4;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += btnSearch_Click;
             // 
             // Main
             // 
