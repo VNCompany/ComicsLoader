@@ -1,4 +1,4 @@
-﻿namespace ComicsLoader.Models.SourceUriResolvers;
+﻿namespace ComicsLoader.Core.Models.SourceUriResolvers;
 
 internal class DefaultUriResolver : ISourceUriResolver
 {

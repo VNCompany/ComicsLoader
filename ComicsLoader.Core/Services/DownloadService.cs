@@ -1,4 +1,4 @@
-﻿namespace ComicsLoader.Services
+﻿namespace ComicsLoader.Core.Services
 {
     internal class DownloadService : IDownloadService
     {

@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
-using ComicsLoader.Services;
+using ComicsLoader.Core.Services;
 
-namespace ComicsLoader.Models;
+namespace ComicsLoader.Core.Models;
 
 internal class SaveCollection
 {

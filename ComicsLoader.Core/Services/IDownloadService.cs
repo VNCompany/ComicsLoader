@@ -1,4 +1,4 @@
-﻿namespace ComicsLoader.Services;
+﻿namespace ComicsLoader.Core.Services;
 
 public interface IDownloadService : IDisposable
 {

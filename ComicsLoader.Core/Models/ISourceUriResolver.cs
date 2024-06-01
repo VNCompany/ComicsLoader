@@ -1,4 +1,4 @@
-﻿namespace ComicsLoader.Models;
+﻿namespace ComicsLoader.Core.Models;
 
 internal interface ISourceUriResolver
 {

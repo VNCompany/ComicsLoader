@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicsLoader", "ComicsLoader\ComicsLoader.csproj", "{4517EC1C-3DBD-49AD-A59F-AA9BC22450AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicsLoader.Core", "ComicsLoader.Core\ComicsLoader.Core.csproj", "{F3B3E8DC-FF0A-416F-A6F1-08AF78CB11F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicsLoader.UI", "ComicsLoader.UI\ComicsLoader.UI.csproj", "{FCAC9A4F-5198-42A7-AD27-F23DA0B09AC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4517EC1C-3DBD-49AD-A59F-AA9BC22450AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4517EC1C-3DBD-49AD-A59F-AA9BC22450AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4517EC1C-3DBD-49AD-A59F-AA9BC22450AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4517EC1C-3DBD-49AD-A59F-AA9BC22450AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3B3E8DC-FF0A-416F-A6F1-08AF78CB11F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B3E8DC-FF0A-416F-A6F1-08AF78CB11F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B3E8DC-FF0A-416F-A6F1-08AF78CB11F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B3E8DC-FF0A-416F-A6F1-08AF78CB11F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCAC9A4F-5198-42A7-AD27-F23DA0B09AC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCAC9A4F-5198-42A7-AD27-F23DA0B09AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCAC9A4F-5198-42A7-AD27-F23DA0B09AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCAC9A4F-5198-42A7-AD27-F23DA0B09AC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
