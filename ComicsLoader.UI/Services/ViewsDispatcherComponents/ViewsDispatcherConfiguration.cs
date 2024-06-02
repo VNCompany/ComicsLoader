@@ -9,10 +9,10 @@ class ViewsDispatcherConfiguration
 {
     private readonly HashSet<(Type, Type)> _bindings = [];
 
-    public void AddBinding<TViewModel, TWindow>() where TViewModel : IViewModel
-                                                  where TWindow : Window
+    public void AddBinding<TViewModel, TView>() where TViewModel : IViewModel
+                                                where TView : IViewProvider
     {
-        _bindings.Add((typeof(TViewModel), typeof(TViewModel)));
+        _bindings.Add((typeof(TViewModel), typeof(TView)));
     }
 
     public ImmutableDictionary<Type, Type> ToDictionary()

@@ -8,9 +8,10 @@ class ViewModelContext : IViewModelContext
 {
     private readonly Window _window;
     
-    public ViewModelContext(Type windowType)
+    public ViewModelContext(Type windowType, IViewModel viewModel)
     {
         _window = (Window)Activator.CreateInstance(windowType)!;
+        _window.DataContext = viewModel;
     }
 
     public bool? ShowDialog() => _window.ShowDialog();

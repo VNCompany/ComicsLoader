@@ -1,8 +1,5 @@
-﻿using System.ComponentModel;
+﻿namespace ComicsLoader.UI.Abstractions;
 
-namespace ComicsLoader.UI.Abstractions;
-
-interface IViewModel : INotifyPropertyChanged, IDisposable
+public interface IViewModel : IDisposable
 {
-    IViewModelContext? ViewModelContext { get; set; }
 }

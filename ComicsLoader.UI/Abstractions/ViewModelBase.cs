@@ -3,16 +3,11 @@ using System.Runtime.CompilerServices;
 
 namespace ComicsLoader.UI.Abstractions;
 
-abstract class ViewModelBase : IViewModel
+internal abstract class ViewModelBase : IViewModel, INotifyPropertyChanged
 {
-    public IViewModelContext? ViewModelContext { get; set; }
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public void Dispose()
-    {
-        ViewModelContext?.Dispose();
-    }
+    public virtual void Dispose() { }
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

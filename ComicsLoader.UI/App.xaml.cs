@@ -10,18 +10,19 @@ namespace ComicsLoader.UI
     /// </summary>
     public partial class App : Application
     {
+        private readonly Startup _startup = new();
         private readonly IServiceProvider _serviceProvider;
 
         public App()
         {
             ServiceCollection services = new ServiceCollection();
-            new Startup().ConfigureServices(services);
+            _startup.ConfigureServices(services);
             _serviceProvider = services.BuildServiceProvider();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var viewsDispatcher = _serviceProvider.GetRequiredService<ViewsDispatcher>();
+            _startup.Run(_serviceProvider);
         }
     }
 }

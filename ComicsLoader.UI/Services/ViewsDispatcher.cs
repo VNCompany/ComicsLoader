@@ -6,7 +6,7 @@ using ComicsLoader.UI.Services.ViewsDispatcherComponents;
 
 namespace ComicsLoader.UI.Services;
 
-class ViewsDispatcher
+internal class ViewsDispatcher : IViewsDispatcher
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly IImmutableDictionary<Type, Type> _bindings;
@@ -17,10 +17,6 @@ class ViewsDispatcher
         _bindings = bindings;
     }
 
-    public TViewModel GetViewModel<TViewModel>() where TViewModel : IViewModel
-    {
-        var vm = _serviceProvider.GetRequiredService<TViewModel>();
-        vm.ViewModelContext = new ViewModelContext(_bindings[typeof(TViewModel)]);
-        return vm;
-    }
+    public IViewModelContext GetViewModelContext(ViewModelBase viewModel)
+        => new ViewModelContext(_bindings[viewModel.GetType()], viewModel);
 }

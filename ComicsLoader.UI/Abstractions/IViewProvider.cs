@@ -1,9 +1,9 @@
 ﻿namespace ComicsLoader.UI.Abstractions;
 
-public interface IViewModelContext : IDisposable
+public interface IViewProvider : IDisposable
 {
-    bool? ShowDialog();
     void Show();
+    bool? ShowDialog();
     void Hide();
     void Close();
 }
