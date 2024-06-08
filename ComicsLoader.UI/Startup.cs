@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 
-using ComicsLoader.UI.Services.ViewsDispatcherComponents.ViewProviders;
+using ComicsLoader.UI.Services;
 using ComicsLoader.UI.Abstractions;
-using ComicsLoader.UI.ViewModels;
+using ComicsLoader.UI.ServiceExtensions;
 
 namespace ComicsLoader.UI;
 
@@ -10,17 +11,15 @@ class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddViewsDispatcher(cfg =>
-        {
-            cfg.AddBinding<MainViewModel, WindowProvider<Views.MainWindow>>();
-        });
+        services.AddTransient<ViewsProviderService>();
+        services.AddViewModels();
     }
 
-    public void Run(IServiceProvider serviceProvider)
+    public void Run(IServiceProvider serviceProvider, StartupEventArgs e)
     {
-        var dispatcher = serviceProvider.GetRequiredService<IViewsDispatcher>();
-        var vm = serviceProvider.GetRequiredService<MainViewModel>();
+        Views.VMConnector.Resolver = type => serviceProvider.GetService(type) as ViewModelBase;
 
-        dispatcher.GetViewModelContext(vm).Show();
+        var viewsProvider = serviceProvider.GetRequiredService<ViewsProviderService>();
+        viewsProvider.Get("MainWindow").Show();
     }
 }

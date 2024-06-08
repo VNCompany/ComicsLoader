@@ -1,21 +1,10 @@
 ﻿namespace ComicsLoader.Core.Models;
 
-internal record SaveItem
+public class SaveItem
 {
-    public Uri Root { get; }
-    public string RelativeSource { get; }
-    public Uri? Value { get; }
+    public string RelativePart { get; set; } = string.Empty;
+    public Uri? Url { get; set; }
+    public bool IsCorrect => Url != null;
 
-    public SaveItem(Uri root, string relativeSource, ISourceUriResolver resolver)
-    {
-        Root = root;
-        RelativeSource = relativeSource;
-        Value = resolver.Resolve(root, relativeSource);
-    }
-
-    public SaveItem(Uri root, string relativeSource)
-    {
-        Root = root;
-        RelativeSource = relativeSource;
-    }
+    public override string ToString() => IsCorrect ? Url!.ToString() : RelativePart;
 }

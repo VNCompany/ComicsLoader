@@ -19,6 +19,14 @@ namespace ComicsLoader.UI.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            tbUrlRoot.KeyDown += TbUrlRoot_KeyDown;
+        }
+
+        private void TbUrlRoot_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                tbUrlRoot.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }

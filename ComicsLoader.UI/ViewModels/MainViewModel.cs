@@ -3,23 +3,21 @@ using System.ComponentModel;
 
 namespace ComicsLoader.UI.ViewModels;
 
-internal class MainViewModel : ViewModelBase
+internal class MainViewModel : ValidatedViewModelBase
 {
-    private Uri? _rootUrl;
-    public Uri? RootUrl
-    {
-        get => _rootUrl;
-        set => _rootUrl = value;
-    }
+    private Uri _rootUrl = Constants.DefaultUri;
 
-    private string? _content;
-    public string? Content
+    private string _rootUrlString = string.Empty;
+    public string RootUrlString
     {
-        get => _content;
+        get => _rootUrlString;
         set
         {
-            _content = value;
-            OnPropertyChanged();
+            string? error = null;
+            if (value != string.Empty && !Uri.TryCreate(value, UriKind.Absolute, out _))
+                error = "Invalid uri";
+
+            SetProperty(ref _rootUrlString, value, error, callPropertyChanged: false);
         }
     }
 }

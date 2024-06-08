@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace ComicsLoader.UI.Abstractions;
 
-internal abstract class ViewModelBase : IViewModel, INotifyPropertyChanged
+public abstract class ViewModelBase : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -12,5 +12,12 @@ internal abstract class ViewModelBase : IViewModel, INotifyPropertyChanged
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    protected virtual void SetProperty<T>(ref T field, T newValue, bool callPropertyChanged = true, [CallerMemberName] string? propertyName = null)
+    {
+        field = newValue;
+        if (callPropertyChanged)
+            OnPropertyChanged(propertyName);
     }
 }

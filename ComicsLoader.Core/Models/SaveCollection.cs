@@ -8,43 +8,40 @@ internal class SaveCollection
 {
     private static readonly Regex __htmlAttrRegex = new Regex(@"^(.+)/@([^/]+)$");
 
-    private readonly IDownloadService _downloadService;
-
-    public Uri Root { get; private set; } = new("http://localhost");
+    public Uri Root { get; }
     public string? Content { get; set; }
     public string? XPath { get; set; }
     
-    public List<SaveItem>? Items { get; private set; }
+    public List<SaveItem> Items { get; private set; }
     public string? OutputDir { get; set; }
 
 
-    public SaveCollection(IDownloadService downloadService)
+    public SaveCollection(Uri root, string content, string xPath)
     {
-        _downloadService = downloadService;
-    }
-
-    public async Task LoadRoot(string url)
-    {
-        if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? root))
-            throw new InvalidOperationException($"Can't resolve URL `{url}`");
-
-        Content = await _downloadService.GetHtml(root);
-
         Root = root;
+        Content = content;
+        XPath = xPath;
+        Items = LoadLinks(Content, xPath).Select(link => new SaveItem
+        {
+            RelativePart = link
+        }).ToList();
     }
 
-    public void LoadItems(string xPath, ISourceUriResolver resolver)
+    public void ResolveUrls(Func<Uri, string, Uri?> resolver)
+    {
+        Items.ForEach(item => item.Url = resolver.Invoke(Root, item.RelativePart));
+    }
+
+    private static IEnumerable<string> LoadLinks(string content, string xPath)
     {
         var htmlDoc = new HtmlAgilityPack.HtmlDocument();
-        htmlDoc.LoadHtml(Content);
+        htmlDoc.LoadHtml(content);
 
         Match match = __htmlAttrRegex.Match(xPath);
-        IEnumerable<string> links = !match.Success
+        return !match.Success
             ? htmlDoc.DocumentNode.SelectNodes(xPath)
                                   .Select(n => n.InnerHtml)
             : htmlDoc.DocumentNode.SelectNodes(match.Groups[1].Value)
                                   .Select(n => n.GetAttributeValue(match.Groups[2].Value, string.Empty));
-
-        Items = links.Select(li => new SaveItem(Root, li, resolver)).ToList();
     }
 }

@@ -6,13 +6,11 @@
         xmlns:local="clr-namespace:ComicsLoader.UI.Views"
         xmlns:vm="clr-namespace:ComicsLoader.UI.ViewModels"
         mc:Ignorable="d"
+        DataContext="{local:VMConnector Type=vm:MainViewModel}"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
-    
+
     <StackPanel>
-        <TextBox Text="{Binding RootUrl}" />
+        <TextBox Name="tbUrlRoot" Text="{Binding RootUrlString, Mode=TwoWay, UpdateSourceTrigger=Explicit, NotifyOnValidationError=True}" />
         <Button>TODO</Button>
     </StackPanel>
 </Window>
