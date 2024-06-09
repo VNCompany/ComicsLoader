@@ -20,4 +20,12 @@ public abstract class ViewModelBase : INotifyPropertyChanged
         if (callPropertyChanged)
             OnPropertyChanged(propertyName);
     }
+
+    protected void Queue(Action action)
+    {
+        action.Invoke();
+    }
+
+    protected void ShowMessage(string message, string caption = "Notify") 
+        => System.Windows.MessageBox.Show(message, caption);
 }

@@ -7,11 +7,7 @@ internal class RelayCommand : ICommand
     private readonly Action<object?> _execute;
     private readonly Predicate<object?>? _canExecute;
 
-    public event EventHandler? CanExecuteChanged
-    {
-        add => CommandManager.RequerySuggested += value;
-        remove => CommandManager.RequerySuggested -= value;
-    }
+    public event EventHandler? CanExecuteChanged;
 
     public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
     {
@@ -24,4 +20,9 @@ internal class RelayCommand : ICommand
 
     public void Execute(object? parameter)
         => _execute.Invoke(parameter);
+
+    public void RaiseCanExecuteChanged()
+    {
+        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+    }
 }

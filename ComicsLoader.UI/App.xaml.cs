@@ -9,7 +9,7 @@ namespace ComicsLoader.UI
     public partial class App : Application
     {
         private readonly Startup _startup = new();
-        private readonly IServiceProvider _serviceProvider;
+        private readonly ServiceProvider _serviceProvider;
 
         public App()
         {
@@ -21,6 +21,11 @@ namespace ComicsLoader.UI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             _startup.Run(_serviceProvider, e);
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            _serviceProvider.Dispose();
         }
     }
 }

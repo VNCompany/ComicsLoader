@@ -20,25 +20,38 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60*" MinHeight="50"/>
             <RowDefinition Height="3"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*" MinHeight="10"/>
         </Grid.RowDefinitions>
 
         <GridSplitter Grid.Row="1" Background="WhiteSmoke" ShowsPreview="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
         <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                   ItemsSource="{StaticResource TestCollection}">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.Resources>
+            
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="200" Header="URL" DisplayMemberBinding="{Binding Url}" />
+                    <GridViewColumn Width="400" Header="URL" DisplayMemberBinding="{Binding Url}" />
                     <GridViewColumn Width="100" Header="Progress">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ProgressBar Width="80" Height="14"
-                                             Maximum="100" Value="{Binding Percent}"/>
+                                <Grid>
+                                    <ProgressBar Foreground="CornflowerBlue"
+                                                 Maximum="100" Value="{Binding Percent}"/>
+                                    <TextBlock TextAlignment="Center" VerticalAlignment="Center">
+                                        <Run Text="{Binding Percent}" /><Run Text="%" />
+                                    </TextBlock>
+                                </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" Header="Percent" DisplayMemberBinding="{Binding Percent}" />
+                    <GridViewColumn Width="60" Header="Count" DisplayMemberBinding="{Binding Percent}" />
+                    <GridViewColumn Width="60" Header="Success" DisplayMemberBinding="{Binding Percent}" />
+                    <GridViewColumn Width="60" Header="Failed" DisplayMemberBinding="{Binding Percent}" />
                 </GridView>
             </ListView.View>
         </ListView>

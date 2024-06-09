@@ -6,11 +6,55 @@
         xmlns:local="clr-namespace:ComicsLoader.UI.Views"
         xmlns:vm="clr-namespace:ComicsLoader.UI.ViewModels"
         mc:Ignorable="d"
-        DataContext="{local:VMConnector Type=vm:MainViewModel}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Comics Loader v2" Height="450" Width="410"
+        MinHeight="400" MinWidth="400"
+        DataContext="{local:VMConnector Type=vm:MainViewModel}">
+    
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="3" />
+        </Style>
+    </Window.Resources>
 
-    <StackPanel>
-        <TextBox Name="tbUrlRoot" Text="{Binding RootUrlString, Mode=TwoWay, UpdateSourceTrigger=Explicit, NotifyOnValidationError=True}" />
-        <Button>TODO</Button>
-    </StackPanel>
+    <Grid Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" HorizontalAlignment="Right" Padding="10,2"
+                Content="Queue (0)" IsEnabled="False"/>
+
+
+        <!-- URL -->
+        <TextBlock Grid.Row="1" 
+                   Text="URL:" />
+        <TextBox Grid.Row="2" 
+                 Text="{Binding RootUrlString, NotifyOnValidationError=True}"
+                 IsEnabled="{Binding IsNotBusy}" />
+
+        <!-- HTML -->
+        <TextBlock Grid.Row="3" Margin="0,5,0,0" 
+           Text="HTML*:" />
+        <TextBox Grid.Row="4" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"
+                 Text="{Binding Html}"
+                 IsEnabled="{Binding IsNotBusy}" />
+
+        <!-- XPath -->
+        <TextBlock Grid.Row="5" Margin="0,5,0,0" 
+                   Text="XPath*:" />
+        <ComboBox Grid.Row="6" IsEditable="True"
+                  Text="{Binding XPath}"/>
+
+
+        <Button Grid.Row="7" Width="100" Margin="0,5,0,0" Padding="3"
+                Command="{Binding Parse}"
+                Content="Parse" />
+    </Grid>
 </Window>

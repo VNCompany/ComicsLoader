@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 
 using ComicsLoader.UI.Services;
+using ComicsLoader.Core.Services;
 using ComicsLoader.UI.Abstractions;
 using ComicsLoader.UI.ServiceExtensions;
 
@@ -12,6 +13,7 @@ class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddTransient<ViewsProviderService>();
+        services.AddTransient<IDownloadService, TestDownloadService>();
         services.AddViewModels();
     }
 
@@ -20,6 +22,6 @@ class Startup
         Views.VMConnector.Resolver = type => serviceProvider.GetService(type) as ViewModelBase;
 
         var viewsProvider = serviceProvider.GetRequiredService<ViewsProviderService>();
-        viewsProvider.Get("MainWindow").Show();
+        viewsProvider.Get("AddToQueueWindow").Show();
     }
 }

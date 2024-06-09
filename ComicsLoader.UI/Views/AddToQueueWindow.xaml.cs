@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ComicsLoader.UI.Views
 {
     /// <summary>
-    /// Логика взаимодействия для _MainWindow.xaml
+    /// Логика взаимодействия для AddToQueueWindow.xaml
     /// </summary>
-    public partial class _MainWindow : Window
+    public partial class AddToQueueWindow : Window
     {
-        public _MainWindow()
+        public AddToQueueWindow()
         {
             InitializeComponent();
         }

@@ -12,15 +12,6 @@ public class ValidatedViewModelBase : ViewModelBase, INotifyDataErrorInfo
 
     public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-    public ValidatedViewModelBase()
-    {
-        ErrorsChanged += (s, e) =>
-        {
-            System.Diagnostics.Debug.WriteLine(e.PropertyName);
-            System.Diagnostics.Debug.WriteLine((s as ValidatedViewModelBase)?.HasErrors.ToString());
-        };
-    }
-
     public IEnumerable GetErrors(string? propertyName)
     {
         if (propertyName == null 
@@ -34,6 +25,8 @@ public class ValidatedViewModelBase : ViewModelBase, INotifyDataErrorInfo
 
     protected void SetProperty<T>(ref T field, T newValue, string? error = null, bool callPropertyChanged = true, [CallerMemberName] string? propertyName = null)
     {
+        SetProperty(ref field, newValue, callPropertyChanged, propertyName);
+
         if (propertyName == null)
             return;
 
@@ -55,7 +48,5 @@ public class ValidatedViewModelBase : ViewModelBase, INotifyDataErrorInfo
 
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
-
-        SetProperty(ref field, newValue, callPropertyChanged, propertyName);
     }
 }

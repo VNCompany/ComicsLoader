@@ -9,5 +9,6 @@ internal static class ViewModelExtensions
     public static void AddViewModels(this IServiceCollection services)
     {
         services.AddTransient<MainViewModel>();
+        services.AddTransient<AddToQueueViewModel>();
     }
 }

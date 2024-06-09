@@ -6,9 +6,8 @@
 
         public async Task<string> GetHtml(Uri uri)
         {
-            //var response = await _httpClient.GetAsync(uri);
-            //return await response.Content.ReadAsStringAsync();
-            return await File.ReadAllTextAsync("./test.html");
+            var response = await _httpClient.GetAsync(uri);
+            return await response.Content.ReadAsStringAsync();
         }
 
         public void Dispose() => _httpClient.Dispose();

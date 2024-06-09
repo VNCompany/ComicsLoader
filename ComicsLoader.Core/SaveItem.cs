@@ -1,4 +1,4 @@
-﻿namespace ComicsLoader.Core.Models;
+﻿namespace ComicsLoader.Core;
 
 public class SaveItem
 {
